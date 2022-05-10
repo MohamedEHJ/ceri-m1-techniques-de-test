@@ -46,6 +46,9 @@ public class IPokedexTest {
         Assert.assertEquals(aquali.getName(), pokedex.getPokemon(0).getName());
         Assert.assertEquals(aquali.getIndex(), pokedex.getPokemon(0).getIndex());
 
+        Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(1000));
+        Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(-10));
+
         // Test de l'exception.
         Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(66));
 
