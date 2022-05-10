@@ -6,7 +6,7 @@
 
 [![CircleCI](https://circleci.com/gh/MohamedEHJ/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://circleci.com/gh/MohamedEHJ/ceri-m1-techniques-de-test/tree/master)
 [![codecov](https://codecov.io/gh/MohamedEHJ/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=0MRMB92WDH)](https://codecov.io/gh/MohamedEHJ/ceri-m1-techniques-de-test)
-
+![Checkstyle](img/badges/checkstyle-result.svg)
 ---------------
 
 | Statut             | TP                              |
