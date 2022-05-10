@@ -6,4 +6,7 @@
 
 9 tests passed.
 
-![](C:\Users\mohamed\Desktop\temp\ceri-m1-techniques-de-test\img\tp3.png)
+  <img
+      src="img/tp3.png"
+      title="Test au commit."
+  />
