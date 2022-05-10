@@ -1,6 +1,11 @@
 package fr.univavignon.pokedex.api.implementation;
 
-import fr.univavignon.pokedex.api.*;
+import fr.univavignon.pokedex.api.IPokedex;
+import fr.univavignon.pokedex.api.IPokemonFactory;
+import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
+import fr.univavignon.pokedex.api.PokedexException;
+import fr.univavignon.pokedex.api.Pokemon;
+import fr.univavignon.pokedex.api.PokemonMetadata;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +14,17 @@ import java.util.List;
 
 public class Pokedex implements IPokedex {
 
+    /**
+     * Pokemon list in pokedex.
+     */
     private List<Pokemon> pokemonList;
+    /**
+     * PokemonMetaDataProvider for pokedex.
+     */
     IPokemonMetadataProvider metadataProvider = null;
+    /**
+     * PokemonFactory for pokedex.
+     */
     IPokemonFactory pokemonFactory = null;
 
 
@@ -20,7 +34,8 @@ public class Pokedex implements IPokedex {
         pokemonFactory = new PokemonFactory();
     }
 
-    public Pokedex(IPokemonMetadataProvider metadataProvider, IPokemonFactory pokemonFactory) {
+    public Pokedex(IPokemonMetadataProvider metadataProvider,
+                   IPokemonFactory pokemonFactory) {
         this.pokemonList = new ArrayList<>();
         this.metadataProvider = metadataProvider;
         this.pokemonFactory = pokemonFactory;
@@ -39,8 +54,9 @@ public class Pokedex implements IPokedex {
 
     @Override
     public Pokemon getPokemon(int id) throws PokedexException {
-        if (id < 0 || id > this.size() - 1)
+        if (id < 0 || id > this.size() - 1) {
             throw new PokedexException("Id not in pokedex");
+        }
 
         return pokemonList.get(id);
     }
@@ -58,12 +74,14 @@ public class Pokedex implements IPokedex {
     }
 
     @Override
-    public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
+    public Pokemon createPokemon(int index, int cp, int hp,
+                                 int dust, int candy) {
         return pokemonFactory.createPokemon(index, cp, hp, dust, candy);
     }
 
     @Override
-    public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
+    public PokemonMetadata getPokemonMetadata(int index)
+            throws PokedexException {
         return metadataProvider.getPokemonMetadata(index);
     }
 }
