@@ -1,36 +1,37 @@
 package fr.univavignon.pokedex.api;
 
+import fr.univavignon.pokedex.api.implementation.Pokedex;
+import fr.univavignon.pokedex.api.implementation.PokedexFactory;
+import fr.univavignon.pokedex.api.implementation.PokemonTrainerFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
-
 public class IPokemonTrainerFactoryTest {
 
-    IPokemonTrainerFactory iPokemonTrainerFactory;
+    IPokemonTrainerFactory pokemonTrainerFactory;
     PokemonTrainer mohamed, incelTrainer;
-    IPokedex iPokedex;
-    IPokedexFactory iPokedexFactory;
+    IPokedex pokedex;
+    IPokedexFactory pokedexFactory;
 
     @Before
     public void setUp() throws Exception {
-        iPokemonTrainerFactory = Mockito.mock(IPokemonTrainerFactory.class);
-        iPokedex = Mockito.mock(IPokedex.class);
-        iPokedexFactory = Mockito.mock(IPokedexFactory.class);
-        mohamed = new PokemonTrainer("Mohamed", Team.VALOR, iPokedex);
-        incelTrainer = new PokemonTrainer("incel", Team.INSTINCT, iPokedex);
+        pokemonTrainerFactory = new PokemonTrainerFactory();
+        pokedex = new Pokedex();
+        pokedexFactory = new PokedexFactory();
+        mohamed = new PokemonTrainer("Mohamed", Team.VALOR, pokedex);
+        incelTrainer = new PokemonTrainer("incel", Team.INSTINCT, pokedex);
 
     }
 
     @Test
     public void createTrainer() {
-        Mockito.doReturn(mohamed).when(iPokemonTrainerFactory).createTrainer("Mohamed", Team.VALOR, iPokedexFactory);
-        Mockito.doReturn(incelTrainer).when(iPokemonTrainerFactory).createTrainer("incel", Team.INSTINCT, iPokedexFactory);
+        Assert.assertEquals(mohamed.getName(), pokemonTrainerFactory.createTrainer("Mohamed", Team.VALOR, pokedexFactory).getName());
+        Assert.assertEquals(mohamed.getTeam(), pokemonTrainerFactory.createTrainer("Mohamed", Team.VALOR, pokedexFactory).getTeam());
 
-        Assert.assertEquals(mohamed, iPokemonTrainerFactory.createTrainer("Mohamed", Team.VALOR, iPokedexFactory));
-        Assert.assertEquals(incelTrainer, iPokemonTrainerFactory.createTrainer("incel", Team.INSTINCT, iPokedexFactory));
+        Assert.assertEquals(incelTrainer.getName(), pokemonTrainerFactory.createTrainer("incel", Team.INSTINCT, pokedexFactory).getName());
+        Assert.assertEquals(incelTrainer.getTeam(), pokemonTrainerFactory.createTrainer("incel", Team.INSTINCT, pokedexFactory).getTeam());
 
     }
 }

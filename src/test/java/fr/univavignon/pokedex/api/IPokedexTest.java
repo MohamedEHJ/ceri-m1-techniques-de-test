@@ -1,5 +1,6 @@
 package fr.univavignon.pokedex.api;
 
+import fr.univavignon.pokedex.api.implementation.Pokedex;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,53 +9,52 @@ import org.mockito.Mockito;
 import java.util.*;
 
 public class IPokedexTest {
-    IPokedex iPokedex;
+    IPokedex pokedex;
     PokemonMetadata bulbizarre, aquali;
     List<Pokemon> pokemonList;
 
 
     @Before
     public void setUp() throws Exception {
-        iPokedex = Mockito.mock(IPokedex.class);
+        pokedex = new Pokedex();
 
         // Pokedex pour comparaison.
         bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
         aquali = new Pokemon(133, "Aquali", 186, 186, 260, 2729, 202, 5000, 4, 100);
+
         pokemonList = new ArrayList(Arrays.asList(bulbizarre, aquali));
+        pokedex.addPokemon(new Pokemon(133, "Aquali", 186, 186, 260, 2729, 202, 5000, 4, 100));
+        pokedex.addPokemon(new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56));
 
     }
 
     @Test
     public void testSize() {
         // Retourne la taille du pokepaf.
-        Mockito.doReturn(pokemonList.size()).when(iPokedex).size();
-        Assert.assertEquals(2, iPokedex.size());
+        Assert.assertEquals(2, pokedex.size());
     }
 
     @Test
     public void testAddPokemon() {
         // Retourne l'index du pokedex (size+1) quand on ajoute un pokemon.
-        Mockito.doReturn(pokemonList.size() + 1).when(iPokedex).addPokemon(Mockito.any(Pokemon.class));
-        Assert.assertEquals(3, iPokedex.addPokemon(new Pokemon(1, "magomed", 200, 200, 1000, 4000, 4000, 4000, 4, 100)));
+        Assert.assertEquals(pokemonList.size()+1, pokedex.addPokemon(new Pokemon(1, "magomed", 200, 200, 1000, 4000, 4000, 4000, 4, 100)));
     }
 
     @Test
     public void testGetPokemon() throws PokedexException {
         // Retourne un pokemon (aquali) avec l'index du pokedex (0).
-        Mockito.doReturn(aquali).when(iPokedex).getPokemon(0);
-        Assert.assertEquals(aquali, iPokedex.getPokemon(0));
+        Assert.assertEquals(aquali.getName(), pokedex.getPokemon(0).getName());
+        Assert.assertEquals(aquali.getIndex(), pokedex.getPokemon(0).getIndex());
 
         // Test de l'exception.
-        Mockito.doThrow(PokedexException.class).when(iPokedex).getPokemon(Mockito.intThat(index -> index < 0 || index > 1));
-        Assert.assertThrows(PokedexException.class, () -> iPokedex.getPokemon(66));
+        Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(66));
 
     }
 
     @Test
     public void testGetPokemons() {
         // Retourne une liste (unmodificableList).
-        Mockito.doReturn(Collections.unmodifiableList(pokemonList)).when(iPokedex).getPokemons();
-        Assert.assertEquals(Collections.unmodifiableList(pokemonList), iPokedex.getPokemons());
+        Assert.assertEquals(Collections.unmodifiableList(pokemonList).getClass(), pokedex.getPokemons().getClass());
     }
 
     @Test
@@ -68,12 +68,8 @@ public class IPokedexTest {
         pokemonListSortedByCP.sort(PokemonComparators.CP);
 
         // Retourne une liste (unmodificableList) trié.
-        Mockito.doReturn(Collections.unmodifiableList(pokemonListSortedByName)).when(iPokedex).getPokemons(PokemonComparators.NAME);
-        Mockito.doReturn(Collections.unmodifiableList(pokemonListSortedByIndex)).when(iPokedex).getPokemons(PokemonComparators.INDEX);
-        Mockito.doReturn(Collections.unmodifiableList(pokemonListSortedByCP)).when(iPokedex).getPokemons(PokemonComparators.CP);
-
-        Assert.assertEquals("Aquali", iPokedex.getPokemons(PokemonComparators.NAME).get(0).getName());
-        Assert.assertEquals(613, iPokedex.getPokemons(PokemonComparators.CP).get(0).getCp());
-        Assert.assertEquals(0, iPokedex.getPokemons(PokemonComparators.INDEX).get(0).getIndex());
+        Assert.assertEquals("Aquali", pokedex.getPokemons(PokemonComparators.NAME).get(0).getName());
+        Assert.assertEquals(613, pokedex.getPokemons(PokemonComparators.CP).get(0).getCp());
+        Assert.assertEquals(0, pokedex.getPokemons(PokemonComparators.INDEX).get(0).getIndex());
     }
 }

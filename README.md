@@ -1,4 +1,5 @@
 # UCE Génie Logiciel Avancé : Techniques de tests
+
 ### EL HAJOUI Mohamed - M1 ILSEN GROUPE 1
 
 ----------
@@ -8,16 +9,22 @@
 
 ---------------
 
+| Statut             | TP                              |
+|--------------------|---------------------------------|
+| :heavy_check_mark: | TP1 : Fork them all !           |
+| :heavy_check_mark: | TP2 : (Dés)intégration continue |
+| :heavy_check_mark: | TP3 : Pokéunit                  |          
+| :heavy_check_mark: | TP4 : 100% IV                   |          
+
 ## TP3
 
-Épisode 2 - Catch the API  & Épisode 3 - Use cases
+##### Épisode 2 - Catch the API & Épisode 3 - Use cases
 
 9 tests passed.
 
-  <img
-      src="img/tp3.png"
-      title="Test au commit."
-  />
+<img src="img/tp3.png"
+title="Test au commit."
+/>
 
 ## TP4
 
@@ -33,4 +40,8 @@
    <li>Rien de difficile, j'ai récupéré les badges directement sur CircleCI et Codecov</li> 
 </ul> 
 
+#### Épisode 3 - Make it work !
 
+<ul>
+    <li>Tranquille -- <b>Tests run: 9, Failures: 0, Errors: 0, Skipped: 0</b></li>
+</ul> 
