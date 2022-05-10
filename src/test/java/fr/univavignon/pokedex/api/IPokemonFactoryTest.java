@@ -28,5 +28,7 @@ public class IPokemonFactoryTest {
         Assert.assertEquals(bulbizarre.getName(), pokemonFactory.createPokemon(0, 613, 64, 4000, 4).getName());
         Assert.assertEquals(aquali.getName(), pokemonFactory.createPokemon(133, 2729, 202, 5000, 4).getName());
 
+        Assert.assertNull(pokemonFactory.createPokemon(2, 2729, 202, 5000, 4));
+
     }
 }

@@ -15,7 +15,7 @@ public class PokemonFactory implements IPokemonFactory {
         try {
             pokemonMetadata = new PokemonMetadataProvider().getPokemonMetadata(index);
         } catch (PokedexException e) {
-            System.out.println(e.getMessage());
+            return null;
         }
 
         double iv = 56.0;
