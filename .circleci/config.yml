@@ -29,11 +29,31 @@ jobs:
       - run:
           name: Test
           command: mvn clean test
-      - run:
-          name: JAVADOC
-          command: mvn javadoc:javadoc
       - codecov/upload:
           file: /target/site/jacoco/jacoco.xml
+
+  docs:
+    docker:
+      - image: cimg/base:2021.04
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      # Use mvn clean and package as the standard maven build phase
+      - run:
+          name: install1
+          command: sudo add-apt-repository ppa:openjdk-r/ppa
+      - run:
+          name: install2
+          command: sudo apt-get update
+      - run:
+          name: install3
+          command: sudo apt-get install openjdk-11-jdk-headless -y
+      - run:
+          name: Build-docs
+          command: javadoc src/main/java/fr/univavignon/pokedex/api/* -d docs
+      - persist_to_workspace:
+          root: .
+          paths: docs
 
   docs-deploy:
     docker:
@@ -64,8 +84,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - docs-build
-        - docs-deploy:
-            requires:
-              - test
-              - docs-build
+      - docs
+      - docs-deploy:
+          requires:
+            - build-and-test
