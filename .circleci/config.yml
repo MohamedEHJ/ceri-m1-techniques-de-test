@@ -35,6 +35,28 @@ jobs:
       - codecov/upload:
           file: /target/site/jacoco/jacoco.xml
 
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: docs/
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "elhajoui.mohamed@outlook.fr"
+            git config user.name "MohamedEHJ"
+
+      - add_ssh_keys:
+          fingerprints:
+            - "ab:f8:98:11:92:1c:33:45:a3:a3:63:6d:a1:9d:ca:e7"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist docs/
+
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -42,3 +64,8 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - docs-build
+        - docs-deploy:
+            requires:
+              - test
+              - docs-build
