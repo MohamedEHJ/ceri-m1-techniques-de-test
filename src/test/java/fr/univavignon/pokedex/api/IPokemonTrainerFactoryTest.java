@@ -1,12 +1,8 @@
 package fr.univavignon.pokedex.api;
 
-import fr.univavignon.pokedex.api.implementation.Pokedex;
-import fr.univavignon.pokedex.api.implementation.PokedexFactory;
-import fr.univavignon.pokedex.api.implementation.PokemonTrainerFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class IPokemonTrainerFactoryTest {
 

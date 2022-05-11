@@ -1,9 +1,4 @@
-package fr.univavignon.pokedex.api.implementation;
-
-import fr.univavignon.pokedex.api.IPokedexFactory;
-import fr.univavignon.pokedex.api.IPokemonTrainerFactory;
-import fr.univavignon.pokedex.api.PokemonTrainer;
-import fr.univavignon.pokedex.api.Team;
+package fr.univavignon.pokedex.api;
 
 public class PokemonTrainerFactory implements IPokemonTrainerFactory {
 

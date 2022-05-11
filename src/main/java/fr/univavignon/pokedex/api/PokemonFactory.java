@@ -1,9 +1,4 @@
-package fr.univavignon.pokedex.api.implementation;
-
-import fr.univavignon.pokedex.api.IPokemonFactory;
-import fr.univavignon.pokedex.api.PokedexException;
-import fr.univavignon.pokedex.api.Pokemon;
-import fr.univavignon.pokedex.api.PokemonMetadata;
+package fr.univavignon.pokedex.api;
 
 public class PokemonFactory implements IPokemonFactory {
     @Override

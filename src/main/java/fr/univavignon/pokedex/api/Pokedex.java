@@ -1,11 +1,4 @@
-package fr.univavignon.pokedex.api.implementation;
-
-import fr.univavignon.pokedex.api.IPokedex;
-import fr.univavignon.pokedex.api.IPokemonFactory;
-import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
-import fr.univavignon.pokedex.api.PokedexException;
-import fr.univavignon.pokedex.api.Pokemon;
-import fr.univavignon.pokedex.api.PokemonMetadata;
+package fr.univavignon.pokedex.api;
 
 import java.util.ArrayList;
 import java.util.Collections;

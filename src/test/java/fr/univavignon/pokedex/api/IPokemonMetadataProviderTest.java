@@ -1,10 +1,8 @@
 package fr.univavignon.pokedex.api;
 
-import fr.univavignon.pokedex.api.implementation.PokemonMetadataProvider;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class IPokemonMetadataProviderTest {
 

@@ -1,9 +1,4 @@
-package fr.univavignon.pokedex.api.implementation;
-
-import fr.univavignon.pokedex.api.IPokedex;
-import fr.univavignon.pokedex.api.IPokedexFactory;
-import fr.univavignon.pokedex.api.IPokemonFactory;
-import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
+package fr.univavignon.pokedex.api;
 
 public class PokedexFactory implements IPokedexFactory {
 

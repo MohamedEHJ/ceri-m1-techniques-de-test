@@ -88,3 +88,4 @@ workflows:
       - docs-deploy:
           requires:
             - build-and-test
+            - docs

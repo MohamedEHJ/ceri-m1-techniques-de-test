@@ -1,4 +1,4 @@
-package fr.univavignon.pokedex.api.implementation;
+package fr.univavignon.pokedex.api;
 
 import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
 import fr.univavignon.pokedex.api.PokedexException;
