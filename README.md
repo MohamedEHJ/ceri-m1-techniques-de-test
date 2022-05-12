@@ -8,6 +8,8 @@
 [![codecov](https://codecov.io/gh/MohamedEHJ/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=0MRMB92WDH)](https://codecov.io/gh/MohamedEHJ/ceri-m1-techniques-de-test)
 ![Checkstyle](img/badges/checkstyle-result.svg)
 ---------------
+[Lien vers la documentation](https://mohamedehj.github.io/ceri-m1-techniques-de-test/fr/univavignon/pokedex/api/package-summary.html)
+---------------
 
 | Statut             | TP                              |
 |--------------------|---------------------------------|
